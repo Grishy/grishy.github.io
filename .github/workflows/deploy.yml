@@ -1,4 +1,3 @@
-
 name: website
 
 on: push
@@ -10,10 +9,11 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v1
-      - name: Build Gatsby Site
-        uses: jzweifel/gatsby-cli-github-action@master
+      - name: Use Node.js
+        uses: actions/setup-node@v1
         with:
-          gatsby-arg: build
+          node-version: '12.x' 
+      - run: npm install
       -
         name: Deploy
         if: success()
