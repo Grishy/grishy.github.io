@@ -1,13 +1,13 @@
 <p>
   <h2 align="center">
-    <a href="http://grishy.ru/">
-      <img width="220" src='https://cdn.dribbble.com/users/60266/screenshots/1560009/gifdribbble_cc_aerolab.gif'/><br>
-      <i>Grishy.ru</i>
+    <a href="https://grishy.dev/">
+      <img width="220" src='./README_logo.gif'/><br>
+      <i>Grishy.dev</i>
     </a>
     - Блог о программировании и...
   </h2>
 </p>
 
-### Только хранилище, основной код находится [тут](https://github.com/Grishy/blog)
+### Только хранилище, основной код находится [тут](https://github.com/Grishy/grishy.github.io)
 
 :anchor: [Grishy](https://github.com/Grishy)
