@@ -49,7 +49,12 @@ context[f(index, arr)] = f(indexOther, arr);
 Используем следующий код для получения всех литералов для обфускайии и разбиения их на подстроки.
 
 ```js
-const staticLiterals = stringsProgram.concat(numbersProgram, bindingProperties, expStatementStr, staticMemberStr);
+const staticLiterals = stringsProgram.concat(
+  numbersProgram,
+  bindingProperties,
+  expStatementStr,
+  staticMemberStr,
+);
 // Код довольно похож на старый
 // staticLiteral содержит все строки/числа, который мы хотим обфусцировать
 
@@ -58,46 +63,46 @@ const staticLiterals = stringsProgram.concat(numbersProgram, bindingProperties, 
 // splitStringLiteral("1234567890", 5);
 // ["1", "23", "456", "7890"]
 function splitStringLiteral(lit, maxNumSplits) {
-    maxNumSplits = Math.min(maxNumSplits, lit.length);
-    const numSplits = Math.max(1, Math.floor(maxNumSplits * Math.random()));
-    const splits = new Set();
-    while (splits.size < numSplits) {
-        splits.add(Math.max(1, Math.floor(lit.length * Math.random())));
-    }
+  maxNumSplits = Math.min(maxNumSplits, lit.length);
+  const numSplits = Math.max(1, Math.floor(maxNumSplits * Math.random()));
+  const splits = new Set();
+  while (splits.size < numSplits) {
+    splits.add(Math.max(1, Math.floor(lit.length * Math.random())));
+  }
 
-    const orderedSplits = Array.from(splits);
-    orderedSplits.sort((a, b) => a - b);
-    const literalChunks = orderedSplits.map((v, idx) => {
-        if (idx === 0) {
-            return lit.substring(0, v);
-        } else if (idx < orderedSplits.length - 1) {
-            return lit.substring(orderedSplits[idx - 1], v);
-        } else {
-            return lit.substring(orderedSplits[idx - 1]);
-        }
-    });
-
-    if (numSplits === 1) {
-        literalChunks.push(lit.substring(orderedSplits[0]));
+  const orderedSplits = Array.from(splits);
+  orderedSplits.sort((a, b) => a - b);
+  const literalChunks = orderedSplits.map((v, idx) => {
+    if (idx === 0) {
+      return lit.substring(0, v);
+    } else if (idx < orderedSplits.length - 1) {
+      return lit.substring(orderedSplits[idx - 1], v);
+    } else {
+      return lit.substring(orderedSplits[idx - 1]);
     }
-    return literalChunks;
+  });
+
+  if (numSplits === 1) {
+    literalChunks.push(lit.substring(orderedSplits[0]));
+  }
+  return literalChunks;
 }
 
 const subLiterals = new Set(); // Для экономии места мы сохраняем каждую подстроку только один раз
 // Мы строим отображение литералов, например 'toDataURL'
 // на все её подстроки, ['t', 'oDataU', 'RL']
 const staticLiteralToChunks = new Map(
-    staticLiterals.map((lit) => {
-        let subLit;
-        if (typeof lit === "string") {
-            subLit = splitStringLiteral(lit, transformationsConfig.maxSplits);
-        } else {
-            subLit = [lit];
-        }
+  staticLiterals.map((lit) => {
+    let subLit;
+    if (typeof lit === "string") {
+      subLit = splitStringLiteral(lit, transformationsConfig.maxSplits);
+    } else {
+      subLit = [lit];
+    }
 
-        subLit.forEach((v) => subLiterals.add(v));
-        return [lit, subLit]; // мы не разбиваем числа, пока...
-    }),
+    subLit.forEach((v) => subLiterals.add(v));
+    return [lit, subLit]; // мы не разбиваем числа, пока...
+  }),
 );
 
 // Создаем массив, содержащий все подстроки
@@ -107,8 +112,8 @@ const staticLiteralToIndexChunks = new Map();
 // Мы создаем map, которая связывает литерал с индексами всех
 // его подстроки в массиве subLitArr
 staticLiteralToChunks.forEach((v, k) => {
-    const indexChunks = v.map((subLit) => subLiteralToIndex.get(subLit));
-    staticLiteralToIndexChunks.set(k, indexChunks);
+  const indexChunks = v.map((subLit) => subLiteralToIndex.get(subLit));
+  staticLiteralToIndexChunks.set(k, indexChunks);
 });
 ```
 
@@ -149,31 +154,31 @@ function encode64(input, keyStr) {
 
 ```js
 refactor.query("Script")[0].statements.unshift(
-    new Shift.VariableDeclarationStatement({
-        declaration: new Shift.VariableDeclaration({
-            kind: "const",
-            declarators: [
-                new Shift.VariableDeclarator({
-                    binding: new Shift.BindingIdentifier({
-                        name: "members",
-                    }),
-                    init: new Shift.ArrayExpression({
-                        elements: subLitArr.map((lit) => {
-                            if (typeof lit === "string") {
-                                return new Shift.LiteralStringExpression({
-                                    value: encode64(lit, alphabet),
-                                });
-                            } else if (typeof lit === "number") {
-                                return new Shift.LiteralNumericExpression({
-                                    value: lit,
-                                });
-                            }
-                        }),
-                    }),
-                }),
-            ],
+  new Shift.VariableDeclarationStatement({
+    declaration: new Shift.VariableDeclaration({
+      kind: "const",
+      declarators: [
+        new Shift.VariableDeclarator({
+          binding: new Shift.BindingIdentifier({
+            name: "members",
+          }),
+          init: new Shift.ArrayExpression({
+            elements: subLitArr.map((lit) => {
+              if (typeof lit === "string") {
+                return new Shift.LiteralStringExpression({
+                  value: encode64(lit, alphabet),
+                });
+              } else if (typeof lit === "number") {
+                return new Shift.LiteralNumericExpression({
+                  value: lit,
+                });
+              }
+            }),
+          }),
         }),
+      ],
     }),
+  }),
 );
 ```
 
@@ -185,10 +190,13 @@ refactor.query("Script")[0].statements.unshift(
 const alphabetPropertyName = generateRandomString(6);
 
 // Генерируем случайный алфавит
-const alphabet = shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".split("")).join("");
+const alphabet = shuffle(
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".split(""),
+).join("");
 
 // Добавляем переменные в скрипт
-const alphabetElement = parseScript(`window['${alphabetPropertyName}'] = '${alphabet}'`).statements[0];
+const alphabetElement = parseScript(`window['${alphabetPropertyName}'] = '${alphabet}'`)
+  .statements[0];
 refactor.query("Script")[0].statements.unshift(alphabetElement);
 ```
 
