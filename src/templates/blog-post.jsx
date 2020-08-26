@@ -94,7 +94,7 @@ class BlogPostTemplate extends React.Component {
           title={cover.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <Header white={true} />
+        <Header />
         <Cover {...cover} />
         <section
           className={classNames({

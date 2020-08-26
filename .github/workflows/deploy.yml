@@ -6,17 +6,15 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v1
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x' 
+          node-version: "12.x"
       - run: npm install
       - run: npm run build
-      -
-        name: Deploy
+      - name: Deploy
         if: success()
         uses: crazy-max/ghaction-github-pages@v1
         with:

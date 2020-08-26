@@ -6,7 +6,7 @@ thumbnail: ./thumbnail.jpg
 draft: false
 ---
 
-Первая запись в блоге.  
+Первая запись в блоге.
 
 I'm sure I'll write a lot more interesting things in the future.
 
@@ -23,4 +23,4 @@ Oh, and here's a great quote from this Wikipedia on
 
 ![Chinese Salty Egg](./salty_egg.jpg)
 
-Hi ^_^
+Hi ^\_^

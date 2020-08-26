@@ -1,4 +1,4 @@
-const autoprefixer = require("autoprefixer")
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
   siteMetadata: {
@@ -127,4 +127,4 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
   ],
-}
+};

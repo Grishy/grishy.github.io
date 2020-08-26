@@ -16,13 +16,8 @@ class BlogIndex extends React.Component {
     return (
       <div className="wrapper">
         <SEO title="All posts" />
-        <Header white={false} />
+        <Header />
         <PostList posts={posts} />
-        {/* <Layout
-          location={this.props.location}
-          title={siteTitle}
-          whiteHeader={false}
-        ></Layout> */}
         <Footer />
       </div>
     );

@@ -15,7 +15,7 @@ SVG: Font Awesome
 *,
 *::after,
 *::before {
-  box-sizing: inherit
+  box-sizing: inherit;
 }
 
 *::selection {
@@ -108,12 +108,13 @@ video,
 hr {
   margin: 0;
   padding: 0;
-  border: 0
+  border: 0;
 }
 
 body {
   background-color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
+    Helvetica Neue, sans-serif;
   text-rendering: optimizeLegibility;
   margin: 0;
   padding: 0;
@@ -124,19 +125,19 @@ body {
 
 @media (max-width: 750px) {
   html {
-      font-size:16px
+    font-size: 16px;
   }
 }
 
 @media (min-width: 992px) {
   html {
-      font-size:17px
+    font-size: 17px;
   }
 }
 
 @media (min-width: 1200px) {
   html {
-      font-size:18px
+    font-size: 18px;
   }
 }
 
@@ -157,31 +158,36 @@ nav,
 section,
 main,
 form legend {
-  display: block
+  display: block;
 }
 
 ol,
 ul {
-  list-style: none
+  list-style: none;
 }
 
 blockquote,
 q {
-  quotes: none
+  quotes: none;
 }
 
 button,
 input,
 textarea,
 select {
-  margin: 0
+  margin: 0;
 }
-
 
 img,
 video,
 svg {
-  max-width: 100%
+  max-width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .container {
@@ -189,12 +195,6 @@ svg {
   margin: 0 auto;
   padding-right: 15px;
   padding-left: 15px;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100vh
 }
 
 @media (min-width: 750px) {
