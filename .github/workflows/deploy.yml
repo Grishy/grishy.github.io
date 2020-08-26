@@ -3,22 +3,22 @@ name: website
 on: push
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-      - run: npm install
-      - run: npm run build
-      - name: Deploy
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: master
-          build_dir: public
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v1
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: "12.x"
+            - run: npm install
+            - run: npm run build
+            - name: Deploy
+              if: success()
+              uses: crazy-max/ghaction-github-pages@v1
+              with:
+                  target_branch: master
+                  build_dir: public
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

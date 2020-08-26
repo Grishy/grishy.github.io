@@ -15,13 +15,13 @@ SVG: Font Awesome
 *,
 *::after,
 *::before {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 *::selection {
-  background: #279de5;
-  color: #fff;
-  text-shadow: none;
+    background: #279de5;
+    color: #fff;
+    text-shadow: none;
 }
 
 html,
@@ -106,43 +106,42 @@ mark,
 audio,
 video,
 hr {
-  margin: 0;
-  padding: 0;
-  border: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 body {
-  background-color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
-    Helvetica Neue, sans-serif;
-  text-rendering: optimizeLegibility;
-  margin: 0;
-  padding: 0;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing: antialiased;
 }
 
 @media (max-width: 750px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 @media (min-width: 992px) {
-  html {
-    font-size: 17px;
-  }
+    html {
+        font-size: 17px;
+    }
 }
 
 @media (min-width: 1200px) {
-  html {
-    font-size: 18px;
-  }
+    html {
+        font-size: 18px;
+    }
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 article,
@@ -158,59 +157,59 @@ nav,
 section,
 main,
 form legend {
-  display: block;
+    display: block;
 }
 
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 blockquote,
 q {
-  quotes: none;
+    quotes: none;
 }
 
 button,
 input,
 textarea,
 select {
-  margin: 0;
+    margin: 0;
 }
 
 img,
 video,
 svg {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-right: 15px;
-  padding-left: 15px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 @media (min-width: 750px) {
-  .container {
-    width: 750px;
-  }
+    .container {
+        width: 750px;
+    }
 }
 
 @media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
+    .container {
+        width: 970px;
+    }
 }
 
 @media (min-width: 1200px) {
-  .container {
-    width: 1100px;
-  }
+    .container {
+        width: 1100px;
+    }
 }

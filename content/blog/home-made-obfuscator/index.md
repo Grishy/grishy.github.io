@@ -28,49 +28,49 @@ Browser fingerprinting это техника, которая собирает н
 
 ```javascript
 class SimpleFingerprintCollector {
-  constructor() {
-    this.tests = [];
-    this.fingerprint = {};
-  }
-
-  registerTest(name, test) {
-    this.tests.push({
-      name: name,
-      fn: test,
-    });
-  }
-
-  async collect() {
-    const testsPromises = [];
-
-    for (let test of this.tests) {
-      if (test.fn.constructor.name === "AsyncFunction") {
-        testsPromises.push(
-          new Promise(async (resolve) => {
-            testsPromises.push(
-              test.fn().then(
-                (resTest) => {
-                  this.fingerprint[test.name] = resTest;
-                },
-                (err) => {
-                  this.fingerprint[test.name] = err;
-                }
-              )
-            );
-          })
-        );
-      } else {
-        try {
-          this.fingerprint[test.name] = test.fn();
-        } catch (err) {
-          this.fingerprint[test.name] = err;
-        }
-      }
+    constructor() {
+        this.tests = [];
+        this.fingerprint = {};
     }
 
-    await Promise.all(testsPromises);
-    return this.fingerprint;
-  }
+    registerTest(name, test) {
+        this.tests.push({
+            name: name,
+            fn: test,
+        });
+    }
+
+    async collect() {
+        const testsPromises = [];
+
+        for (let test of this.tests) {
+            if (test.fn.constructor.name === "AsyncFunction") {
+                testsPromises.push(
+                    new Promise(async (resolve) => {
+                        testsPromises.push(
+                            test.fn().then(
+                                (resTest) => {
+                                    this.fingerprint[test.name] = resTest;
+                                },
+                                (err) => {
+                                    this.fingerprint[test.name] = err;
+                                },
+                            ),
+                        );
+                    }),
+                );
+            } else {
+                try {
+                    this.fingerprint[test.name] = test.fn();
+                } catch (err) {
+                    this.fingerprint[test.name] = err;
+                }
+            }
+        }
+
+        await Promise.all(testsPromises);
+        return this.fingerprint;
+    }
 }
 
 const fingerprintCollector = new SimpleFingerprintCollector();
@@ -85,58 +85,58 @@ const fingerprintCollector = new SimpleFingerprintCollector();
 ```javascript
 // src/fingerprint/canvas.js
 fingerprintCollector.registerTest("canvas", () => {
-  let res = {};
-  const canvas = document.createElement("canvas");
-  canvas.width = 400;
-  canvas.height = 200;
-  canvas.style.display = "inline";
-  const context = canvas.getContext("2d");
+    let res = {};
+    const canvas = document.createElement("canvas");
+    canvas.width = 400;
+    canvas.height = 200;
+    canvas.style.display = "inline";
+    const context = canvas.getContext("2d");
 
-  try {
-    context.rect(0, 0, 10, 10);
-    context.rect(2, 2, 6, 6);
-    res.canvasWinding = context.isPointInPath(5, 5, "evenodd");
-  } catch (e) {
-    res.canvasWinding = "unknown";
-  }
+    try {
+        context.rect(0, 0, 10, 10);
+        context.rect(2, 2, 6, 6);
+        res.canvasWinding = context.isPointInPath(5, 5, "evenodd");
+    } catch (e) {
+        res.canvasWinding = "unknown";
+    }
 
-  try {
-    context.textBaseline = "alphabetic";
-    context.fillStyle = "#f60";
-    context.fillRect(125, 1, 62, 20);
-    context.fillStyle = "#069";
-    context.font = "11pt no-real-font-123";
-    context.fillText("Cwm fjordbank glyphs vext quiz, 😃", 2, 15);
-    context.fillStyle = "rgba(102, 204, 0, 0.2)";
-    context.font = "18pt Arial";
-    context.fillText("Cwm fjordbank glyphs vext quiz, 😃", 4, 45);
+    try {
+        context.textBaseline = "alphabetic";
+        context.fillStyle = "#f60";
+        context.fillRect(125, 1, 62, 20);
+        context.fillStyle = "#069";
+        context.font = "11pt no-real-font-123";
+        context.fillText("Cwm fjordbank glyphs vext quiz, 😃", 2, 15);
+        context.fillStyle = "rgba(102, 204, 0, 0.2)";
+        context.font = "18pt Arial";
+        context.fillText("Cwm fjordbank glyphs vext quiz, 😃", 4, 45);
 
-    context.globalCompositeOperation = "multiply";
-    context.fillStyle = "rgb(255,0,255)";
-    context.beginPath();
-    context.arc(50, 50, 50, 0, 2 * Math.PI, !0);
-    context.closePath();
-    context.fill();
-    context.fillStyle = "rgb(0,255,255)";
-    context.beginPath();
-    context.arc(100, 50, 50, 0, 2 * Math.PI, !0);
-    context.closePath();
-    context.fill();
-    context.fillStyle = "rgb(255,255,0)";
-    context.beginPath();
-    context.arc(75, 100, 50, 0, 2 * Math.PI, !0);
-    context.closePath();
-    context.fill();
-    context.fillStyle = "rgb(255,0,255)";
-    context.arc(75, 75, 75, 0, 2 * Math.PI, !0);
-    context.arc(75, 75, 25, 0, 2 * Math.PI, !0);
-    context.fill("evenodd");
-    res.image = canvas.toDataURL();
-  } catch (e) {
-    res.image = "unknown";
-  }
+        context.globalCompositeOperation = "multiply";
+        context.fillStyle = "rgb(255,0,255)";
+        context.beginPath();
+        context.arc(50, 50, 50, 0, 2 * Math.PI, !0);
+        context.closePath();
+        context.fill();
+        context.fillStyle = "rgb(0,255,255)";
+        context.beginPath();
+        context.arc(100, 50, 50, 0, 2 * Math.PI, !0);
+        context.closePath();
+        context.fill();
+        context.fillStyle = "rgb(255,255,0)";
+        context.beginPath();
+        context.arc(75, 100, 50, 0, 2 * Math.PI, !0);
+        context.closePath();
+        context.fill();
+        context.fillStyle = "rgb(255,0,255)";
+        context.arc(75, 75, 75, 0, 2 * Math.PI, !0);
+        context.arc(75, 75, 25, 0, 2 * Math.PI, !0);
+        context.fill("evenodd");
+        res.image = canvas.toDataURL();
+    } catch (e) {
+        res.image = "unknown";
+    }
 
-  return res;
+    return res;
 });
 ```
 
@@ -145,11 +145,11 @@ fingerprintCollector.registerTest("canvas", () => {
 ```javascript
 // src/fingerprint/platform.js
 fingerprintCollector.registerTest("platform", () => {
-  if (navigator.platform) {
-    return navigator.platform;
-  }
+    if (navigator.platform) {
+        return navigator.platform;
+    }
 
-  return "unknown";
+    return "unknown";
 });
 ```
 
@@ -165,9 +165,9 @@ const { series, src, dest } = require("gulp");
 const concat = require("gulp-concat");
 
 function concatScripts() {
-  return src(["src/simpleFingerprintCollector.js", "src/fingerprint/*.js"])
-    .pipe(concat("simpleFingerprintCollector.js"))
-    .pipe(dest("./dist/"));
+    return src(["src/simpleFingerprintCollector.js", "src/fingerprint/*.js"])
+        .pipe(concat("simpleFingerprintCollector.js"))
+        .pipe(dest("./dist/"));
 }
 
 exports.concat = concatScripts;
@@ -239,77 +239,60 @@ const fs = require("fs");
 
 ```js
 function obfuscateFPScript(src, dest) {
-  // Читаем содержимое переданного файла (не обфусцированное)
-  const fileContents = fs.readFileSync(src, "utf8");
+    // Читаем содержимое переданного файла (не обфусцированное)
+    const fileContents = fs.readFileSync(src, "utf8");
 
-  // Используя shift-ast библиотеку парсим скрипт и строим ast
-  const tree = parseScript(fileContents);
+    // Используя shift-ast библиотеку парсим скрипт и строим ast
+    const tree = parseScript(fileContents);
 
-  // Инициализируем сессию рефакторинга, используемая, например, для запроса узлов дерева
-  const refactor = new RefactorSession(tree);
+    // Инициализируем сессию рефакторинга, используемая, например, для запроса узлов дерева
+    const refactor = new RefactorSession(tree);
 
-  // Приведённые ниже 5 операторов извлекают различные строки, числа и свойства объектов
-  // которые мы хотим обфусцировать
-  // refactor.query позволяет запрашивать определённые узлы AST используя синтаксис, похожий на CSS
-  // Таким образом, например refactor.query('LiteralStringExpression') вернёт все LiteralStringExpression
-  // в программе.
-  const stringsProgram = Array.from(
-    new Set(refactor.query("LiteralStringExpression").map((v) => v.value))
-  );
-  const numbersProgram = Array.from(
-    new Set(refactor.query("LiteralNumericExpression").map((v) => v.value))
-  );
-  const bindingProperties = Array.from(
-    new Set(
-      refactor
-        .query(
-          'AssignmentExpression[binding.type="StaticMemberAssignmentTarget"]'
-        )
-        .map((v) => v.binding.property)
-    )
-  );
-  const expStatementStr = Array.from(
-    new Set(
-      refactor
-        .query(
-          'ExpressionStatement[expression.expression.type="StaticMemberExpression"]'
-        )
-        .map((exp) => exp.expression.expression.property)
-    )
-  );
-  const staticMemberStr = Array.from(
-    new Set(refactor.query("StaticMemberExpression").map((v) => v.property))
-  );
+    // Приведённые ниже 5 операторов извлекают различные строки, числа и свойства объектов
+    // которые мы хотим обфусцировать
+    // refactor.query позволяет запрашивать определённые узлы AST используя синтаксис, похожий на CSS
+    // Таким образом, например refactor.query('LiteralStringExpression') вернёт все LiteralStringExpression
+    // в программе.
+    const stringsProgram = Array.from(new Set(refactor.query("LiteralStringExpression").map((v) => v.value)));
+    const numbersProgram = Array.from(new Set(refactor.query("LiteralNumericExpression").map((v) => v.value)));
+    const bindingProperties = Array.from(
+        new Set(
+            refactor
+                .query('AssignmentExpression[binding.type="StaticMemberAssignmentTarget"]')
+                .map((v) => v.binding.property),
+        ),
+    );
+    const expStatementStr = Array.from(
+        new Set(
+            refactor
+                .query('ExpressionStatement[expression.expression.type="StaticMemberExpression"]')
+                .map((exp) => exp.expression.expression.property),
+        ),
+    );
+    const staticMemberStr = Array.from(new Set(refactor.query("StaticMemberExpression").map((v) => v.property)));
 
-  const staticLiterals = stringsProgram.concat(
-    numbersProgram,
-    bindingProperties,
-    expStatementStr,
-    staticMemberStr
-  );
-  // staticLiterals - содержит атрибуты, которые мы хотим обфусцировать
-  [
-    "AsyncFunction",
-    "adblock",
-    "div",
-    "&nbsp;",
-    "adsbox",
-    "canvas",
-    "rgb(255,255,0)",
-    "timezone",
-    0,
-    400,
-    200,
-    10,
-    ..."screenX",
-    "pageXOffset",
-    "pageYOffset",
-    "clientWidth",
-  ];
+    const staticLiterals = stringsProgram.concat(numbersProgram, bindingProperties, expStatementStr, staticMemberStr);
+    // staticLiterals - содержит атрибуты, которые мы хотим обфусцировать
+    [
+        "AsyncFunction",
+        "adblock",
+        "div",
+        "&nbsp;",
+        "adsbox",
+        "canvas",
+        "rgb(255,255,0)",
+        "timezone",
+        0,
+        400,
+        200,
+        10,
+        ..."screenX",
+        "pageXOffset",
+        "pageYOffset",
+        "clientWidth",
+    ];
 
-  const staticLiteralToIndex = new Map(
-    staticLiterals.map((lit, idx) => [lit, idx])
-  );
+    const staticLiteralToIndex = new Map(staticLiterals.map((lit, idx) => [lit, idx]));
 }
 ```
 
@@ -317,31 +300,31 @@ function obfuscateFPScript(src, dest) {
 
 ```js
 refactor.query("Script")[0].statements.unshift(
-  new Shift.VariableDeclarationStatement({
-    declaration: new Shift.VariableDeclaration({
-      kind: "const",
-      declarators: [
-        new Shift.VariableDeclarator({
-          binding: new Shift.BindingIdentifier({
-            name: "members",
-          }),
-          init: new Shift.ArrayExpression({
-            elements: staticLiterals.map((lit) => {
-              if (typeof lit === "string") {
-                return new Shift.LiteralStringExpression({
-                  value: new Buffer.from(lit).toString("base64"),
-                });
-              } else if (typeof lit === "number") {
-                return new Shift.LiteralNumericExpression({
-                  value: lit,
-                });
-              }
-            }),
-          }),
+    new Shift.VariableDeclarationStatement({
+        declaration: new Shift.VariableDeclaration({
+            kind: "const",
+            declarators: [
+                new Shift.VariableDeclarator({
+                    binding: new Shift.BindingIdentifier({
+                        name: "members",
+                    }),
+                    init: new Shift.ArrayExpression({
+                        elements: staticLiterals.map((lit) => {
+                            if (typeof lit === "string") {
+                                return new Shift.LiteralStringExpression({
+                                    value: new Buffer.from(lit).toString("base64"),
+                                });
+                            } else if (typeof lit === "number") {
+                                return new Shift.LiteralNumericExpression({
+                                    value: lit,
+                                });
+                            }
+                        }),
+                    }),
+                }),
+            ],
         }),
-      ],
     }),
-  })
 );
 ```
 
@@ -366,80 +349,64 @@ refactor.query("Script")[0].statements.unshift(indexToStrAst);
 ```js
 // Короткая функция, помогающая нам легче создавать выражения вызовов
 function buildIndexToLitCallExpression(index) {
-  return new Shift.CallExpression({
-    callee: new Shift.IdentifierExpression({
-      name: "indexToLiteral",
-    }),
-    arguments: [
-      new Shift.LiteralNumericExpression({
-        value: index,
-      }),
-      new Shift.IdentifierExpression({
-        name: "members",
-      }),
-    ],
-  });
+    return new Shift.CallExpression({
+        callee: new Shift.IdentifierExpression({
+            name: "indexToLiteral",
+        }),
+        arguments: [
+            new Shift.LiteralNumericExpression({
+                value: index,
+            }),
+            new Shift.IdentifierExpression({
+                name: "members",
+            }),
+        ],
+    });
 }
 
 // Преобразование строк и чисел, используемых в аргументах функций
 refactor.query("CallExpression").forEach((callExpression) => {
-  callExpression.arguments.forEach((argument, idx) => {
-    if (
-      argument.type === "LiteralStringExpression" ||
-      argument.type === "LiteralNumericExpression"
-    ) {
-      callExpression.arguments[idx] = buildIndexToLitCallExpression(
-        staticLiteralToIndex.get(argument.value)
-      );
-    }
-  });
+    callExpression.arguments.forEach((argument, idx) => {
+        if (argument.type === "LiteralStringExpression" || argument.type === "LiteralNumericExpression") {
+            callExpression.arguments[idx] = buildIndexToLitCallExpression(staticLiteralToIndex.get(argument.value));
+        }
+    });
 });
 
 // Присвоения вида myobj.prop = val; => myobj[func(idx, arr)] = val;
-refactor
-  .query('AssignmentExpression[binding.type="StaticMemberAssignmentTarget"]')
-  .forEach((assignmentExpression) => {
+refactor.query('AssignmentExpression[binding.type="StaticMemberAssignmentTarget"]').forEach((assignmentExpression) => {
     assignmentExpression.binding = new Shift.ComputedMemberAssignmentTarget({
-      object: assignmentExpression.binding.object,
-      expression: buildIndexToLitCallExpression(
-        staticLiteralToIndex.get(assignmentExpression.binding.property)
-      ),
+        object: assignmentExpression.binding.object,
+        expression: buildIndexToLitCallExpression(staticLiteralToIndex.get(assignmentExpression.binding.property)),
     });
-  });
+});
 
 // Строки и числа в оператораях-выражениях
 refactor
-  .query(
-    ':matches(ExpressionStatement[expression.expression.type="LiteralStringExpression"], ' +
-      'ExpressionStatement[expression.expression.type="LiteralNumericExpression"])'
-  )
-  .forEach((exp) => {
-    exp.expression.expression = buildIndexToLitCallExpression(
-      staticLiteralToIndex.get(exp.expression.expression.value)
-    );
-  });
+    .query(
+        ':matches(ExpressionStatement[expression.expression.type="LiteralStringExpression"], ' +
+            'ExpressionStatement[expression.expression.type="LiteralNumericExpression"])',
+    )
+    .forEach((exp) => {
+        exp.expression.expression = buildIndexToLitCallExpression(
+            staticLiteralToIndex.get(exp.expression.expression.value),
+        );
+    });
 
 // Строки и числа в объявлении переменных
 refactor.query("VariableDeclarationStatement").forEach((exp) => {
-  exp.declaration.declarators.forEach((declarator) => {
-    if (
-      declarator.init.type === "LiteralNumericExpression" ||
-      declarator.init.type === "LiteralStringExpression"
-    ) {
-      declarator.init = buildIndexToLitCallExpression(
-        staticLiteralToIndex.get(declarator.init.value)
-      );
-    }
-  });
+    exp.declaration.declarators.forEach((declarator) => {
+        if (declarator.init.type === "LiteralNumericExpression" || declarator.init.type === "LiteralStringExpression") {
+            declarator.init = buildIndexToLitCallExpression(staticLiteralToIndex.get(declarator.init.value));
+        }
+    });
 });
 
 // Сделать доступ к полям и методам объекта динамическим
 refactor.query("StaticMemberExpression").forEach((exp) => {
-  exp.type = "ComputedMemberExpression";
-  exp.expression = buildIndexToLitCallExpression(
-    staticLiteralToIndex.get(exp.property)
-  );
-  delete exp.property;
+    exp.type = "ComputedMemberExpression";
+    exp.expression = buildIndexToLitCallExpression(staticLiteralToIndex.get(exp.property));
+    delete exp.property;
 });
 
 // Генерируем код на из получившегося AST дерева и сохраняем его в файл
@@ -455,11 +422,8 @@ fs.writeFileSync(dest, refactor.print(), "utf8");
 const obfuscator = require("./src/obfuscator.js");
 
 function obfuscateFPScript(done) {
-  obfuscator.obfuscate(
-    "./dist/simpleFingerprintCollector.js",
-    "./dist/obfuscated.js"
-  );
-  done();
+    obfuscator.obfuscate("./dist/simpleFingerprintCollector.js", "./dist/obfuscated.js");
+    done();
 }
 
 exports.obfuscate = obfuscateFPScript;
@@ -478,31 +442,31 @@ const rename = require("gulp-rename");
 
 // Создадим новую задачу
 function compress() {
-  // Как входные параметры, передадим обфусцируемый скрипт
-  return src("dist/obfuscated.js")
-    .pipe(
-      terser({
-        compress: {
-          booleans: false,
-          drop_console: true,
-          evaluate: false,
-          keep_classnames: false,
-        },
-        mangle: {
-          toplevel: true,
-          reserved: ["fingerprintCollector", "collect"], // мы не должны переименовывать переменные fingerprintCollector, collect
-          // так как это нужно для получения доступа из других скриптов, которым нужно знать их имя
-        },
-        keep_fnames: false,
-        output: {
-          beautify: false,
-          preamble: "/* You superb copyright here */", // Вы так же можете добавить сообщение или копирайты в заголовок
-          // вашего скрипта
-        },
-      })
-    )
-    .pipe(rename({ extname: ".min.js" }))
-    .pipe(dest("dist/")); // это создаст новый файл **dist/obfuscated.min.js**
+    // Как входные параметры, передадим обфусцируемый скрипт
+    return src("dist/obfuscated.js")
+        .pipe(
+            terser({
+                compress: {
+                    booleans: false,
+                    drop_console: true,
+                    evaluate: false,
+                    keep_classnames: false,
+                },
+                mangle: {
+                    toplevel: true,
+                    reserved: ["fingerprintCollector", "collect"], // мы не должны переименовывать переменные fingerprintCollector, collect
+                    // так как это нужно для получения доступа из других скриптов, которым нужно знать их имя
+                },
+                keep_fnames: false,
+                output: {
+                    beautify: false,
+                    preamble: "/* You superb copyright here */", // Вы так же можете добавить сообщение или копирайты в заголовок
+                    // вашего скрипта
+                },
+            }),
+        )
+        .pipe(rename({ extname: ".min.js" }))
+        .pipe(dest("dist/")); // это создаст новый файл **dist/obfuscated.min.js**
 }
 
 exports.compress = compress;
@@ -521,13 +485,13 @@ exports.build = series(concatScripts, obfuscateFPScript, compress);
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-  </head>
-  <body>
-    <script src="../dist/obfuscated.min.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+    </head>
+    <body>
+        <script src="../dist/obfuscated.min.js"></script>
+    </body>
 </html>
 ```
 
@@ -540,54 +504,53 @@ const puppeteer = require("puppeteer");
 const path = require("path");
 
 describe("Fingerprinting on Chrome Headless", function () {
-  let browser, page;
-  let fingerprint;
+    let browser, page;
+    let fingerprint;
 
-  before(async function () {
-    // Код выполняемый до начала работы тестов
+    before(async function () {
+        // Код выполняемый до начала работы тестов
 
-    // мы создаем экземпляр puppeteer
-    // он позволяет управлять Chrome headless
-    browser = await puppeteer.launch();
-    page = await browser.newPage();
+        // мы создаем экземпляр puppeteer
+        // он позволяет управлять Chrome headless
+        browser = await puppeteer.launch();
+        page = await browser.newPage();
 
-    // мы загружаем HTML страницу, которая находится в этой же директории
-    await page.goto("file://" + path.resolve(__dirname, "test.html"), {
-      waitUntil: "load",
+        // мы загружаем HTML страницу, которая находится в этой же директории
+        await page.goto("file://" + path.resolve(__dirname, "test.html"), {
+            waitUntil: "load",
+        });
+
+        // Выполняем код в контексте нашей HTML страницы, чтобы получить результат работы fingerprint скрипта
+        fingerprint = await page.evaluate(async () => {
+            try {
+                const fingerprint = await fingerprintCollector.collect();
+                return fingerprint;
+            } catch (e) {
+                return e.message;
+            }
+        });
     });
 
-    // Выполняем код в контексте нашей HTML страницы, чтобы получить результат работы fingerprint скрипта
-    fingerprint = await page.evaluate(async () => {
-      try {
-        const fingerprint = await fingerprintCollector.collect();
-        return fingerprint;
-      } catch (e) {
-        return e.message;
-      }
+    after(async function () {
+        // Когда все тесты выполнены, мы закрываем страницу и браузер
+        await page.close();
+        await browser.close();
     });
-  });
 
-  after(async function () {
-    // Когда все тесты выполнены, мы закрываем страницу и браузер
-    await page.close();
-    await browser.close();
-  });
+    // Создадим 3 unit теста
+    it("resOverflow should be an object", () => {
+        expect(typeof fingerprint.resOverflow).to.equal("object");
+    });
 
-  // Создадим 3 unit теста
-  it("resOverflow should be an object", () => {
-    expect(typeof fingerprint.resOverflow).to.equal("object");
-  });
+    it("screen should have 16 properties", () => {
+        const isScreenValid =
+            fingerprint.screenResolution !== undefined && Object.keys(fingerprint.screenResolution).length === 16;
+        expect(isScreenValid).to.be.true;
+    });
 
-  it("screen should have 16 properties", () => {
-    const isScreenValid =
-      fingerprint.screenResolution !== undefined &&
-      Object.keys(fingerprint.screenResolution).length === 16;
-    expect(isScreenValid).to.be.true;
-  });
-
-  it("adblock should be false", () => {
-    expect(fingerprint.adblock).to.be.false;
-  });
+    it("adblock should be false", () => {
+        expect(fingerprint.adblock).to.be.false;
+    });
 });
 ```
 
@@ -596,50 +559,48 @@ describe("Fingerprinting on Chrome Headless", function () {
 ```js
 let e = {};
 const Z = document[t(69, c)](t(5, c));
-(Z[t(101, c)] = t(27, c)),
-  (Z[t(102, c)] = t(28, c)),
-  (Z[t(75, c)][t(50, c)] = t(6, c));
+(Z[t(101, c)] = t(27, c)), (Z[t(102, c)] = t(28, c)), (Z[t(75, c)][t(50, c)] = t(6, c));
 const n = Z[t(76, c)](t(7, c));
 try {
-  n[t(77, c)](t(26, c), t(26, c), t(29, c), t(29, c)),
-    n[t(77, c)](t(30, c), t(30, c), t(31, c), t(31, c)),
-    (e[t(51, c)] = n[t(78, c)](t(32, c), t(32, c), t(8, c)));
+    n[t(77, c)](t(26, c), t(26, c), t(29, c), t(29, c)),
+        n[t(77, c)](t(30, c), t(30, c), t(31, c), t(31, c)),
+        (e[t(51, c)] = n[t(78, c)](t(32, c), t(32, c), t(8, c)));
 } catch (Z) {
-  e[t(51, c)] = t(9, c);
+    e[t(51, c)] = t(9, c);
 }
 try {
-  (n[t(52, c)] = t(10, c)),
-    (n[t(53, c)] = t(11, c)),
-    n[t(79, c)](t(33, c), t(34, c), t(35, c), t(36, c)),
-    (n[t(53, c)] = t(12, c)),
-    (n[t(54, c)] = t(13, c)),
-    n[t(80, c)](t(14, c), t(30, c), t(37, c)),
-    (n[t(53, c)] = t(15, c)),
-    (n[t(54, c)] = t(16, c)),
-    n[t(80, c)](t(14, c), t(38, c), t(39, c)),
-    (n[t(55, c)] = t(17, c)),
-    (n[t(53, c)] = t(18, c)),
-    n[t(81, c)](),
-    n[t(82, c)](t(40, c), t(40, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0),
-    n[t(84, c)](),
-    n[t(85, c)](),
-    (n[t(53, c)] = t(19, c)),
-    n[t(81, c)](),
-    n[t(82, c)](t(41, c), t(40, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0),
-    n[t(84, c)](),
-    n[t(85, c)](),
-    (n[t(53, c)] = t(20, c)),
-    n[t(81, c)](),
-    n[t(82, c)](t(42, c), t(41, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0),
-    n[t(84, c)](),
-    n[t(85, c)](),
-    (n[t(53, c)] = t(18, c)),
-    n[t(82, c)](t(42, c), t(42, c), t(42, c), t(26, c), 2 * Math[t(83, c)], !0),
-    n[t(82, c)](t(42, c), t(42, c), t(43, c), t(26, c), 2 * Math[t(83, c)], !0),
-    n[t(85, c)](t(8, c)),
-    (e[t(56, c)] = Z[t(86, c)]());
+    (n[t(52, c)] = t(10, c)),
+        (n[t(53, c)] = t(11, c)),
+        n[t(79, c)](t(33, c), t(34, c), t(35, c), t(36, c)),
+        (n[t(53, c)] = t(12, c)),
+        (n[t(54, c)] = t(13, c)),
+        n[t(80, c)](t(14, c), t(30, c), t(37, c)),
+        (n[t(53, c)] = t(15, c)),
+        (n[t(54, c)] = t(16, c)),
+        n[t(80, c)](t(14, c), t(38, c), t(39, c)),
+        (n[t(55, c)] = t(17, c)),
+        (n[t(53, c)] = t(18, c)),
+        n[t(81, c)](),
+        n[t(82, c)](t(40, c), t(40, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0),
+        n[t(84, c)](),
+        n[t(85, c)](),
+        (n[t(53, c)] = t(19, c)),
+        n[t(81, c)](),
+        n[t(82, c)](t(41, c), t(40, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0),
+        n[t(84, c)](),
+        n[t(85, c)](),
+        (n[t(53, c)] = t(20, c)),
+        n[t(81, c)](),
+        n[t(82, c)](t(42, c), t(41, c), t(40, c), t(26, c), 2 * Math[t(83, c)], !0),
+        n[t(84, c)](),
+        n[t(85, c)](),
+        (n[t(53, c)] = t(18, c)),
+        n[t(82, c)](t(42, c), t(42, c), t(42, c), t(26, c), 2 * Math[t(83, c)], !0),
+        n[t(82, c)](t(42, c), t(42, c), t(43, c), t(26, c), 2 * Math[t(83, c)], !0),
+        n[t(85, c)](t(8, c)),
+        (e[t(56, c)] = Z[t(86, c)]());
 } catch (Z) {
-  e[t(56, c)] = t(9, c);
+    e[t(56, c)] = t(9, c);
 }
 return e;
 ```
