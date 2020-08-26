@@ -14,12 +14,12 @@ class BlogIndex extends React.Component {
     const posts = data.allMarkdownRemark.edges;
 
     return (
-      <>
-        <SEO title="All posts" />
+      <div className="wrapper">
+        <SEO title="Главная" />
         <Header />
         <PostList posts={posts} />
-        {/* <Footer /> */}
-      </>
+        <Footer />
+      </div>
     );
   }
 }

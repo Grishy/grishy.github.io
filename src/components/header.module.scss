@@ -1,6 +1,57 @@
-@import "../var.scss";
+$title-size: 2.5rem;
+$title-color: hsl(150, 6%, 13%);
+$title-color-hover: hsl(150, 6%, 33%);
+
+$item-size: 1rem;
+$item-color: hsl(150, 6%, 13%);
+$item-bg-hover: hsl(120, 4%, 94%);
+
+$item-padding-vertically: $item-size / 4;
+$item-padding-horizontally: $item-size * 0.75;
+
 .header {
+  margin-top: 1em;
   position: relative;
   height: 70px;
-  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: $title-size;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: $title-color;
+  transition: all 0.3s ease-out;
+
+  &:hover,
+  &:focus {
+    color: $title-color-hover;
+  }
+}
+
+.navigation {
+  float: right;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    transition: all 0.3s ease-out;
+
+    a {
+      font-size: $item-size;
+      font-weight: 400;
+      padding: $item-padding-vertically $item-padding-horizontally;
+      display: block;
+      text-transform: uppercase;
+      color: #000;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $item-bg-hover;
+    }
+  }
 }

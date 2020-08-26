@@ -1,26 +1,18 @@
 import React from "react";
 import classNames from "classnames/bind";
 import { Link } from "gatsby";
-import { RemoveScrollBar } from "react-remove-scroll-bar";
 
 import style from "./header.module.scss";
 
+const LIST = [
+  {
+    to: "/about",
+    title: "Обо мне",
+  },
+];
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      elems: [
-        {
-          to: "/about",
-          title: "Обо мне",
-        },
-      ],
-      toggle: false,
-    };
-  }
-
   render() {
-    const listItems = this.state.elems.map((el) => (
+    const listItems = LIST.map((el) => (
       <li key={el.to}>
         <Link title={el.title} to={el.to}>
           {el.title}
@@ -29,7 +21,7 @@ class Header extends React.Component {
     ));
 
     return (
-      <header className={style.header}>
+      <header className={`container ${style.header}`}>
         <Link to="/" className={style.title}>
           Grishy
         </Link>

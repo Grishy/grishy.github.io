@@ -1,15 +1,10 @@
-@import "../var.scss";
-@import "../mixin.scss";
-
 $img-width: 33%;
 
 .list {
   display: flex;
   flex-direction: column;
-  left: 0;
-  right: 0;
-  flex: 1 0 auto;
-  padding-top: 4rem;
+  padding-top: 4em;
+  width: 64em;
 }
 
 .article {
@@ -33,8 +28,6 @@ $img-width: 33%;
 }
 
 .content {
-  @include link();
-
   width: 100%-$img-width;
   align-self: flex-start;
   padding-left: 1rem;
