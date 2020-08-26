@@ -1,8 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
 import { Link } from "gatsby";
-import { Motion, spring, presets } from "react-motion";
-import { RemoveScrollBar } from "react-remove-scroll-bar";
 
 import style from "./header.module.scss";
 
