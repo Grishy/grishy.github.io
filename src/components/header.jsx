@@ -22,7 +22,7 @@ class Header extends React.Component {
 
     return (
       <header className={`container ${style.header}`}>
-        <Link to="/" className={style.title}>
+        <Link to="/" className={`${style.title}`}>
           Grishy
         </Link>
 

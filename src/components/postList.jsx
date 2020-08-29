@@ -9,10 +9,7 @@ class PostList extends React.Component {
     const posts = this.props.posts;
 
     return (
-      <main
-      
-        className={`container ${style.list}`}>
-
+      <section className={`container ${style.list}`}>
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug;
           const thumbnail =
@@ -21,10 +18,15 @@ class PostList extends React.Component {
           const thumbnailStyle = {
             backgroundImage: `url(${thumbnail})`,
           };
-          
+
           return (
             <article key={node.fields.slug} className={style.article}>
-              <Link to={node.fields.slug} className={style.thumbnail} style={thumbnailStyle}></Link>
+              <Link to={node.fields.slug} className={style.thumbnail}>
+                <figure>
+
+                <img src={thumbnail} alt={title}/>
+                </figure>
+              </Link>
 
               <div className={style.content}>
                 <Link to={node.fields.slug}>{title}</Link>
@@ -37,7 +39,7 @@ class PostList extends React.Component {
             </article>
           );
         })}
-      </main>
+      </section>
     );
   }
 }
