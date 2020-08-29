@@ -35,11 +35,7 @@ class Post extends React.Component {
 
         <div className={style.content}>
           <Link to={slug}>{title}</Link>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: excerpt,
-            }}
-          />
+          <p dangerouslySetInnerHTML={{ __html: excerpt }} />
         </div>
       </article>
     );

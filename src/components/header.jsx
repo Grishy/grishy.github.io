@@ -21,7 +21,7 @@ class Header extends React.Component {
     ));
 
     return (
-      <header className={`container ${style.header}`}>
+      <header className={style.header}>
         <Link to="/" className={`${style.title}`}>
           Grishy
         </Link>

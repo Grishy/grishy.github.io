@@ -92,7 +92,6 @@ class BlogPostTemplate extends React.Component {
         <Cover {...cover} />
         <section
           className={classNames({
-            container: true,
             [style.post]: true,
           })}
           dangerouslySetInnerHTML={{ __html: post.html }}

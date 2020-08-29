@@ -7,12 +7,40 @@ $img-width: 33%;
 }
 
 .article {
-  display: flex;
+  max-width: 32rem;
+  width: calc(100% - 5em);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 48rem) {
+  .article {
+    max-width: 48rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .article {
+    max-width: 64rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .article {
+    max-width: 80rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  .article {
+    max-width: 90rem;
+  }
 }
 
 .thumbnail {
+  flex-basis: 55%;
+
   transition: opacity 0.3s;
-  width: 58%;
   border-radius: 0.4em;
   overflow: hidden;
 
@@ -21,7 +49,6 @@ $img-width: 33%;
   }
 
   figure {
-    background-color: red;
     position: relative;
     width: 100%;
     height: 0%;
@@ -45,6 +72,7 @@ $img-width: 33%;
   width: 100%-$img-width;
   align-self: flex-start;
   padding-left: 1rem;
+
   a {
     font-size: 1.5rem;
     word-break: break-word;
