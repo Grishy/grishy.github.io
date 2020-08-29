@@ -12,19 +12,15 @@ class PostList extends React.Component {
       <section className={`container ${style.list}`}>
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug;
-          const thumbnail =
-            node.frontmatter.thumbnail && node.frontmatter.thumbnail.childImageSharp.fluid.src;
-
-          const thumbnailStyle = {
-            backgroundImage: `url(${thumbnail})`,
-          };
+          const preview =
+            node.frontmatter.img && node.frontmatter.img.childImageSharp.fluid.src;
 
           return (
             <article key={node.fields.slug} className={style.article}>
               <Link to={node.fields.slug} className={style.thumbnail}>
                 <figure>
 
-                <img src={thumbnail} alt={title}/>
+                <img src={preview} alt={title}/>
                 </figure>
               </Link>
 

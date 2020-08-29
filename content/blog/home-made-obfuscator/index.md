@@ -1,8 +1,7 @@
 ---
 title: "Простой самодельный обфускатор JavaScript "
 date: "2019-09-25"
-cover: ./maze.jpg
-thumbnail: ./maze.jpg
+img: ./preview.jpg
 draft: false
 ---
 

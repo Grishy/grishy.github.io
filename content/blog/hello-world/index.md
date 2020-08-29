@@ -1,8 +1,7 @@
 ---
 title: "Привет мир!"
 date: "2015-05-01T22:12:03.284Z"
-cover: ./cover.jpg
-thumbnail: ./thumbnail.jpg
+img: ./preview.jpg
 draft: false
 ---
 

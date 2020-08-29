@@ -1,8 +1,7 @@
 ---
 title: "Улучшение самодельного JavaScript обфускатора"
 date: "2019-11-23"
-cover: ./code.jpg
-thumbnail: ./code.jpg
+img: ./preview.jpg
 draft: true
 ---
 
