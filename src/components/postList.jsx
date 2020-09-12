@@ -13,8 +13,9 @@ class PostList extends React.Component {
           const slug = node.fields.slug;
           const preview = node.frontmatter.img && node.frontmatter.img.childImageSharp.fluid.src;
           const excerpt = node.frontmatter.description || node.excerpt;
+          const date = node.frontmatter.date;
 
-          return <Post title={title} preview={preview} excerpt={excerpt} slug={slug} />;
+          return <Post title={title} preview={preview} excerpt={excerpt} slug={slug} date={date} />;
         })}
       </section>
     );
@@ -23,7 +24,7 @@ class PostList extends React.Component {
 
 class Post extends React.Component {
   render() {
-    const { slug, preview, title, excerpt } = this.props;
+    const { slug, preview, title, excerpt,date } = this.props;
 
     return (
       <article key={slug} className={style.article}>
@@ -35,10 +36,10 @@ class Post extends React.Component {
 
         <div className={style.content}>
           <h2 className={style.content_title}>
-            {" "}
             <Link to={slug}>{title}</Link>
           </h2>
           <p dangerouslySetInnerHTML={{ __html: excerpt }} />
+        {date}
         </div>
       </article>
     );
