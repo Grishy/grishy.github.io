@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 
 import PostList from "../components/postList";
@@ -17,7 +17,7 @@ class BlogIndex extends React.Component {
       <div className="wrapper">
         <SEO title="Главная" />
         <Header />
-        {/* <PostList posts={posts} /> */}
+        <PostList posts={posts} />
         <Footer />
       </div>
     );
