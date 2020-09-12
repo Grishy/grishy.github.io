@@ -1,32 +1,23 @@
 import React from "react";
-import classNames from "classnames/bind";
 import { Link } from "gatsby";
 
 import style from "./header.module.scss";
 
-const LIST = [
-  {
-    to: "/about",
-    title: "Обо мне",
-  },
-];
 class Header extends React.Component {
   render() {
-    const listItems = LIST.map((el) => (
-      <li key={el.to}>
-        <Link title={el.title} to={el.to}>
-          {el.title}
-        </Link>
-      </li>
-    ));
-
     return (
       <header className={style.header}>
-        <Link to="/" className={`${style.title}`}>
-          Grishy
-        </Link>
-
-        <ul className={style.navigation}>{listItems}</ul>
+        <div className={style.one_third}>{/* Plug */}</div>
+        <div className={style.one_third}>
+          <Link to="/" className={`${style.title}`}>
+            Grishy
+          </Link>
+        </div>
+        <div className={style.one_third}>
+          <Link className={style.about} to={"/about"}>
+            Обо мне
+          </Link>
+        </div>
       </header>
     );
   }

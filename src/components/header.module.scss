@@ -1,57 +1,45 @@
-$title-size: 2.5rem;
-$title-color: hsl(150, 6%, 13%);
-$title-color-hover: hsl(150, 6%, 33%);
-
-$item-size: 1rem;
-$item-color: hsl(150, 6%, 13%);
-$item-bg-hover: hsl(120, 4%, 94%);
-
-$item-padding-vertically: $item-size / 4;
-$item-padding-horizontally: $item-size * 0.75;
-
 .header {
-  margin-top: 1em;
-  position: relative;
-  height: 70px;
+  margin-top: 1rem;
   display: flex;
+}
+
+.one_third {
+  flex: 1; // All items are the same size 1/3
+  // and in center
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
 }
 
 .title {
-  font-size: $title-size;
-  letter-spacing: 0.1rem;
+  color: #1f2321;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
   text-transform: uppercase;
-  color: $title-color;
-  transition: all 0.3s ease-out;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
 
-  &:hover,
-  &:focus {
-    color: $title-color-hover;
+  &:hover {
+    opacity: 0.85;
   }
 }
 
-.navigation {
-  float: right;
-  list-style: none;
+.about {
+  // https://stackoverflow.com/questions/32551291/in-css-flexbox-why-are-there-no-justify-items-and-justify-self-properties
+  margin-left: auto; // to right
+  
+  margin-right: 1rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  background-color: #4183f2;
+  color: #fff;
+  padding: 0 1.125rem;
+  line-height: 2.125rem;
+  border-radius: 7px;
+  transition: all 0.25s ease-in-out;
 
-  li {
-    display: inline-block;
-    transition: all 0.3s ease-out;
-
-    a {
-      font-size: $item-size;
-      font-weight: 400;
-      padding: $item-padding-vertically $item-padding-horizontally;
-      display: block;
-      text-transform: uppercase;
-      color: #000;
-      text-decoration: none;
-    }
-
-    &:hover,
-    &:focus {
-      background-color: $item-bg-hover;
-    }
+  &:hover {
+    opacity: 0.85;
   }
 }

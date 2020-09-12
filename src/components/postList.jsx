@@ -28,9 +28,9 @@ class Post extends React.Component {
     return (
       <article key={slug} className={style.article}>
         <Link to={slug} className={style.thumbnail}>
-          <figure>
+          <div className={style.imgAspect}>
             <img src={preview} alt={title} />
-          </figure>
+          </div>
         </Link>
 
         <div className={style.content}>
