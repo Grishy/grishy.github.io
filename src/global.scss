@@ -20,14 +20,24 @@ SVG: Font Awesome
   box-sizing: inherit;
 }
 
-*::selection {
-  background: #279de5;
-  color: #fff;
-  text-shadow: none;
+html {
+  scroll-behavior: smooth;
+  font-size: 85%;
+
+  @media (min-width: 768px) {
+    font-size: 90%;
+  }
+  @media (min-width: 992px) {
+    font-size: 95%;
+  }
+  @media (min-width: 1200px) {
+    font-size: 100%;
+  }
 }
 
 body {
   background-color: #fff;
+  color: #343735;
   font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Open Sans", "Helvetica Neue",
     sans-serif;
   text-rendering: optimizeLegibility;
@@ -42,18 +52,4 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-html {
-  font-size: 14px;
-
-  @media (min-width: 768px) {
-    font-size: 14.5px;
-  }
-  @media (min-width: 992px) {
-    font-size: 15px;
-  }
-  @media (min-width: 1200px) {
-    font-size: 16px;
-  }
 }
