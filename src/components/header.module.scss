@@ -28,18 +28,24 @@
 .about {
   // https://stackoverflow.com/questions/32551291/in-css-flexbox-why-are-there-no-justify-items-and-justify-self-properties
   margin-left: auto; // to right
-  
+
   margin-right: 1rem;
   font-size: 1.1rem;
+  padding: 0 1.125rem;
+  line-height: 2.125rem;
   text-decoration: none;
   background-color: #4183f2;
   color: #fff;
-  padding: 0 1.125rem;
-  line-height: 2.125rem;
   border-radius: 7px;
   transition: all 0.25s ease-in-out;
 
   &:hover {
     opacity: 0.85;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 0 0.8rem;
+    line-height: 2rem;
   }
 }

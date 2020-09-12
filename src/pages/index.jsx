@@ -17,7 +17,7 @@ class BlogIndex extends React.Component {
       <div className="wrapper">
         <SEO title="Главная" />
         <Header />
-        <PostList posts={posts} />
+        {/* <PostList posts={posts} /> */}
         <Footer />
       </div>
     );
