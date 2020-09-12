@@ -4,10 +4,10 @@ module.exports = {
   siteMetadata: {
     title: `Grishy`,
     author: `Sergey Grishin`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    description: `Personal blog.`,
     siteUrl: `https://grishy.dev/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `grishy`,
     },
   },
   plugins: [
@@ -57,6 +57,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sass",
       options: {
+        implementation: require("sass"),
         postCssPlugins: [autoprefixer(["last 5 major version", ">= 0.5%"])],
       },
     },
