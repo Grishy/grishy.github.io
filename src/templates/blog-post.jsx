@@ -17,7 +17,8 @@ class Cover extends React.Component {
         style={{
           backgroundImage: `url(${coverSrc})`,
         }}
-        className={style.cover}>
+        className={style.cover}
+      >
         <div className={style.coverGradient}></div>
         <div className={style.coverWrapper}>
           <div className={style.coverBlock}>

@@ -72,7 +72,8 @@ class Footer extends React.Component {
               width="1rem"
               height="1rem"
               viewBox="0 0 24 24"
-              className={style.heart}>
+              className={style.heart}
+            >
               <path d="M12 21.328l-1.453-1.313c-5.156-4.688-8.531-7.734-8.531-11.531 0-3.094 2.391-5.484 5.484-5.484 1.734 0 3.422 0.844 4.5 2.109 1.078-1.266 2.766-2.109 4.5-2.109 3.094 0 5.484 2.391 5.484 5.484 0 3.797-3.375 6.891-8.531 11.578z" />
             </svg>
           </span>

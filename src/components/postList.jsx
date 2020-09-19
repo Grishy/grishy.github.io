@@ -24,7 +24,7 @@ class PostList extends React.Component {
 
 class Post extends React.Component {
   render() {
-    const { slug, preview, title, excerpt,date } = this.props;
+    const { slug, preview, title, excerpt, date } = this.props;
 
     return (
       <article key={slug} className={style.article}>
@@ -39,7 +39,7 @@ class Post extends React.Component {
             <Link to={slug}>{title}</Link>
           </h2>
           <p dangerouslySetInnerHTML={{ __html: excerpt }} />
-        {date}
+          {date}
         </div>
       </article>
     );
