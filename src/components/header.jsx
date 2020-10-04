@@ -14,7 +14,7 @@ class Header extends React.Component {
           </Link>
         </div>
         <div className={style.one_third}>
-          <Link className={style.about} to={"/about"}>
+          <Link className={style.about} to={"/"}>
             Обо мне
           </Link>
         </div>
