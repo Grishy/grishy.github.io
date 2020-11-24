@@ -4,18 +4,33 @@ import { Link } from "gatsby";
 
 import style from "./postList.module.scss";
 
+function readingTimeStr(readingTime) {
+  const displayed = Math.ceil(readingTime.minutes.toFixed(2));
+  return `${displayed} мин.`;
+}
 class PostList extends React.Component {
   render() {
     return (
       <section className={style.list}>
         {this.props.posts.map(({ node }) => {
+          readingTimeStr(node.fields.readingTime);
           const title = node.frontmatter.title;
           const slug = node.fields.slug;
+          const readingTime = readingTimeStr(node.fields.readingTime);
           const preview = node.frontmatter.img && node.frontmatter.img.childImageSharp.fluid.src;
           const excerpt = node.frontmatter.description || node.excerpt;
           const date = node.frontmatter.date;
 
-          return <Post title={title} preview={preview} excerpt={excerpt} slug={slug} date={date} />;
+          return (
+            <Post
+              title={title}
+              preview={preview}
+              excerpt={excerpt}
+              slug={slug}
+              readingTime={readingTime}
+              date={date}
+            />
+          );
         })}
       </section>
     );
@@ -24,7 +39,7 @@ class PostList extends React.Component {
 
 class Post extends React.Component {
   render() {
-    const { slug, preview, title, excerpt, date } = this.props;
+    const { slug, preview, title, excerpt, readingTime, date } = this.props;
 
     return (
       <article key={slug} className={style.article}>
@@ -39,7 +54,9 @@ class Post extends React.Component {
             <Link to={slug}>{title}</Link>
           </h2>
           <p dangerouslySetInnerHTML={{ __html: excerpt }} />
-          {date}
+          <span className={style.content_meta}>
+            {date}, — {readingTime}
+          </span>
         </div>
       </article>
     );

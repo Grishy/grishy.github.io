@@ -36,12 +36,15 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt(pruneLength: 250)
+          excerpt(pruneLength: 270)
           fields {
             slug
+            readingTime {
+              minutes
+            }
           }
           frontmatter {
-            date(formatString: "DD MMMM  YYYY")
+            date(formatString: "DD MMMM", locale: "ru")
             title
             img {
               childImageSharp {
