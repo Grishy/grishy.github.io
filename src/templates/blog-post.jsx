@@ -19,7 +19,7 @@ class Cover extends React.Component {
         }}
         className={style.cover}
       >
-        <div className={style.coverGradient}></div>
+        <div className={style.coverGradient} />
         <div className={style.coverWrapper}>
           <div className={style.coverBlock}>
             <h1 className={style.coverBlock_title}>{title}</h1>

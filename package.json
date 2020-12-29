@@ -1,7 +1,7 @@
 {
   "name": "grishy-blog",
   "private": true,
-  "description": "Presonal blog",
+  "description": "Personal blog",
   "version": "1.0.0",
   "dependencies": {
     "autoprefixer": "^9.8.6",
