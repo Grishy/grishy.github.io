@@ -44,14 +44,14 @@ export const pageQuery = graphql`
             }
           }
           frontmatter {
-            date(formatString: "DD MMMM", locale: "ru")
+            date(formatString: "DD MMMM YYYY", locale: "ru")
             title
             img {
               childImageSharp {
                 fluid(
                   cropFocus: CENTER
-                  maxWidth: 1200
-                  maxHeight: 720
+                  maxWidth: 1000
+                  maxHeight: 600
                   quality: 90
                 ) {
                   src

@@ -4,14 +4,15 @@ import { Link } from "gatsby";
 
 import style from "./postList.module.scss";
 
-function readingTimeStr(readingTime) {
-  const displayed = Math.ceil(readingTime.minutes.toFixed(2));
+function readingTimeStr(readingNode) {
+  const displayed = Math.ceil(readingNode.minutes);
   return `${displayed} мин.`;
 }
+
 class PostList extends React.Component {
   render() {
     return (
-      <section className={style.list}>
+      <main className={style.list}>
         {this.props.posts.map(({ node }) => {
           readingTimeStr(node.fields.readingTime);
           const title = node.frontmatter.title;
@@ -35,7 +36,7 @@ class PostList extends React.Component {
             />
           );
         })}
-      </section>
+      </main>
     );
   }
 }
@@ -46,21 +47,23 @@ class Post extends React.Component {
 
     return (
       <article key={slug} className={style.article}>
-        <Link to={slug} className={style.thumbnail}>
-          <div className={style.imgAspect}>
-            <img src={preview} alt={title} />
-          </div>
-        </Link>
-
-        <div className={style.content}>
+        <header className={style.header}>
+          <span className={style.content_meta}>
+            {date} — {readingTime}
+          </span>
           <h2 className={style.content_title}>
             <Link to={slug}>{title}</Link>
           </h2>
-          <p dangerouslySetInnerHTML={{ __html: excerpt }} />
-          <span className={style.content_meta}>
-            {date}, — {readingTime}
-          </span>
-        </div>
+        </header>
+
+        <section className={style.section}>
+          <div className={style.content}>
+            <Link to={slug} className={style.thumbnail}>
+              <img src={preview} alt={title} />
+            </Link>
+            <p dangerouslySetInnerHTML={{ __html: excerpt }} />
+          </div>
+        </section>
       </article>
     );
   }

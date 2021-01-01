@@ -8,11 +8,11 @@
   justify-content: space-between;
   align-items: baseline;
   width: 100%;
-  max-width: 1410px;
+  max-width: 1100px;
   padding: 2rem 5rem;
 
   @media (max-width: 600px) {
-    padding: 1.5rem 3rem;
+    padding: 1rem 2.5rem;
     flex-flow: column;
     border-bottom: 1px solid #eee;
 
