@@ -57,14 +57,12 @@ class Post extends React.Component {
         </header>
 
         <section className={style.section}>
-          <div className={style.content}>
-            <figure className={style.thumbnail}>
-              <Link to={slug}>
-                <img src={preview} alt={title} />
-              </Link>
-            </figure>
-            <p dangerouslySetInnerHTML={{ __html: excerpt }} />
-          </div>
+          <figure className={style.thumbnail}>
+            <Link to={slug}>
+              <img src={preview} alt={title} />
+            </Link>
+          </figure>
+          <p dangerouslySetInnerHTML={{ __html: excerpt }} />
 
           <div className={style.readMore}>
             <Link to={slug}>Читать дальше</Link>

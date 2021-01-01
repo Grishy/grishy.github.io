@@ -40,6 +40,10 @@ $footer-icon: (
   text-align: center;
   background: $footer-bg;
 
+  ul {
+    padding-left: 0;
+  }
+
   li {
     display: inline-block;
   }
@@ -57,10 +61,14 @@ $footer-icon: (
 .socials li {
   height: $size-icon;
   width: $size-icon;
-  margin-right: 0.8rem;
+  margin-left: 0.8rem;
   margin-bottom: 0;
   border-radius: 12%;
   transition: background-color 0.3s;
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   a {
     border: none;
