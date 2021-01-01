@@ -29,7 +29,7 @@ class Header extends React.Component {
     return (
       <div className={style.header__container}>
         <header className={style.header}>
-          <Link to="/" className={`${style.header__title}`}>
+          <Link to="/" className={style.header__title}>
             Sergey G.
           </Link>
           <nav className={style.header__nav}>{menuLinksJSX()}</nav>
