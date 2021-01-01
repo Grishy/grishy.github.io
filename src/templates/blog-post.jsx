@@ -36,7 +36,8 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark;
     const siteTitle = this.props.data.site.siteMetadata.title;
     const { previous, next } = this.props.pageContext;
-    const coverSrc = post.frontmatter.img && post.frontmatter.img.childImageSharp.fluid.src;
+    const coverSrc =
+      post.frontmatter.img && post.frontmatter.img.childImageSharp.fluid.src;
 
     //  <Layout location={this.props.location} title={siteTitle} whiteHeader={true}>
     //       <SEO
@@ -88,7 +89,10 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <React.Fragment>
-        <SEO title={cover.title} description={post.frontmatter.description || post.excerpt} />
+        <SEO
+          title={cover.title}
+          description={post.frontmatter.description || post.excerpt}
+        />
         <Header />
         <Cover {...cover} />
         <section

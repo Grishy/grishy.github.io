@@ -17,12 +17,15 @@ class PostList extends React.Component {
           const title = node.frontmatter.title;
           const slug = node.fields.slug;
           const readingTime = readingTimeStr(node.fields.readingTime);
-          const preview = node.frontmatter.img && node.frontmatter.img.childImageSharp.fluid.src;
+          const preview =
+            node.frontmatter.img &&
+            node.frontmatter.img.childImageSharp.fluid.src;
           const excerpt = node.frontmatter.description || node.excerpt;
           const date = node.frontmatter.date;
 
           return (
             <Post
+              key={slug} // React.js key
               title={title}
               preview={preview}
               excerpt={excerpt}

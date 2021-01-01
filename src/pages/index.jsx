@@ -48,7 +48,12 @@ export const pageQuery = graphql`
             title
             img {
               childImageSharp {
-                fluid(cropFocus: CENTER, maxWidth: 1200, maxHeight: 720, quality: 90) {
+                fluid(
+                  cropFocus: CENTER
+                  maxWidth: 1200
+                  maxHeight: 720
+                  quality: 90
+                ) {
                   src
                 }
               }

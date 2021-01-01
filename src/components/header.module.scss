@@ -1,52 +1,47 @@
 .header {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
   display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1410px;
+
+  & > * {
+    padding: 2rem 4rem;
+  }
 }
 
-.one_third {
-  flex: 1; // All items are the same size 1/3
-  // and in center
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.title {
+.header__title {
   color: #1f2321;
-  font-size: 3rem;
+  font-size: 1.15rem;
   font-weight: bold;
-  letter-spacing: 0.125rem;
-  text-transform: uppercase;
+  //text-transform: uppercase;
+  //letter-spacing: 0.125rem;
   text-decoration: none;
   transition: all 0.25s ease-in-out;
 
   &:hover {
-    opacity: 0.85;
+    opacity: 0.8;
   }
 }
 
-.about {
-  // https://stackoverflow.com/questions/32551291/in-css-flexbox-why-are-there-no-justify-items-and-justify-self-properties
-  margin-left: auto; // to right
+.header__nav {
+}
 
-  margin-right: 1rem;
-  font-size: 1.1rem;
-  padding: 0 1.125rem;
-  line-height: 2.125rem;
+$color_link-hover: #1f2321;
+
+.header__nav__link {
+  margin-right: 1.5rem;
+  color: rgb(67 92 110);
+  font-size: 1rem;
   text-decoration: none;
-  background-color: #4183f2;
-  color: #fff;
-  border-radius: 7px;
   transition: all 0.25s ease-in-out;
 
   &:hover {
-    opacity: 0.85;
+    color: $color_link-hover;
   }
+}
 
-  @media (max-width: 600px) {
-    font-size: 1rem;
-    padding: 0 0.8rem;
-    line-height: 2rem;
-  }
+.header__nav__link-active {
+  color: $color_link-hover;
 }

@@ -3,23 +3,35 @@ import { Link } from "gatsby";
 
 import style from "./header.module.scss";
 
+const menuLinks = [
+  { to: "/", name: "Блог" },
+  { to: "/projects", name: "Проекты" },
+  { to: "/contacts", name: "Контакты" },
+];
+
+function menuLinksJSX() {
+  return menuLinks.map((el) => {
+    return (
+      <Link
+        key={el.to}
+        to={el.to}
+        className={style.header__nav__link}
+        activeClassName={style.header__nav__linkActive}
+      >
+        {el.name}
+      </Link>
+    );
+  });
+}
+
 class Header extends React.Component {
   render() {
     return (
       <header className={style.header}>
-        <div className={style.one_third}>{/* Plug */}</div>
-        <div className={style.one_third}>
-          <Link to="/" className={`${style.title}`}>
-            Grishy
-          </Link>
-        </div>
-        <div className={style.one_third}>
-          {/* 
-          <Link className={style.about} to={"/"}>
-            Обо мне
-          </Link>
-          */}
-        </div>
+        <Link to="/" className={`${style.header__title}`}>
+          Sergey G.
+        </Link>
+        <nav className={style.header__nav}>{menuLinksJSX()}</nav>
       </header>
     );
   }
