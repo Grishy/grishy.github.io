@@ -21,8 +21,8 @@
 .header_title {
   margin-top: 0.1rem;
   margin-bottom: 1rem;
-  font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
 
   a {
     color: #161718;
@@ -72,18 +72,18 @@
 
 @media (min-width: 600px) {
   .header_title {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 1000px) {
   .header_title {
-    font-size: 2rem;
+    font-size: 2.1rem;
   }
 }
 
 @media (min-width: 1200px) {
   .header_title {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
   }
 }

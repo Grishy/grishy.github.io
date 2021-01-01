@@ -11,7 +11,7 @@ class Footer extends React.Component {
         <ul className={style.socials}>
           {/* SVG: Font Awesome  */}
           <li className={style.soc_vk}>
-            <a target="_blank" rel="noopener" href="">
+            <a target="_blank" rel="noopener" href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 31 28"
@@ -24,7 +24,7 @@ class Footer extends React.Component {
             </a>
           </li>
           <li className={style.soc_github}>
-            <a target="_blank" rel="noopener" href="">
+            <a target="_blank" rel="noopener" href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -37,7 +37,7 @@ class Footer extends React.Component {
             </a>
           </li>
           <li className={style.soc_telegram}>
-            <a target="_blank" rel="noopener" href="">
+            <a target="_blank" rel="noopener" href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
@@ -50,7 +50,7 @@ class Footer extends React.Component {
             </a>
           </li>
           <li className={style.soc_youtube}>
-            <a target="_blank" rel="noopener" href="">
+            <a target="_blank" rel="noopener" href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -63,7 +63,7 @@ class Footer extends React.Component {
             </a>
           </li>
           <li className={style.soc_feed}>
-            <a target="_blank" rel="noopener" href="">
+            <a target="_blank" rel="noopener" href="/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="22"
