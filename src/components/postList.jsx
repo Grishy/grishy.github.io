@@ -12,7 +12,7 @@ function readingTimeStr(readingNode) {
 class PostList extends React.Component {
   render() {
     return (
-      <main className={style.list}>
+      <main className={`container ${style.list}`}>
         {this.props.posts.map(({ node }) => {
           readingTimeStr(node.fields.readingTime);
           const title = node.frontmatter.title;
@@ -48,19 +48,21 @@ class Post extends React.Component {
     return (
       <article key={slug} className={style.article}>
         <header className={style.header}>
-          <span className={style.content_meta}>
+          <span className={style.header_meta}>
             {date} — {readingTime}
           </span>
-          <h2 className={style.content_title}>
+          <h2 className={style.header_title}>
             <Link to={slug}>{title}</Link>
           </h2>
         </header>
 
         <section className={style.section}>
           <div className={style.content}>
-            <Link to={slug} className={style.thumbnail}>
-              <img src={preview} alt={title} />
-            </Link>
+            <figure className={style.thumbnail}>
+              <Link to={slug}>
+                <img src={preview} alt={title} />
+              </Link>
+            </figure>
             <p dangerouslySetInnerHTML={{ __html: excerpt }} />
           </div>
         </section>

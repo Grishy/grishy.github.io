@@ -22,13 +22,13 @@ SVG: Font Awesome
 
 html {
   scroll-behavior: smooth;
-  font-size: 94%;
+  font-size: 90%;
 
   @media (min-width: 768px) {
-    font-size: 96%;
+    font-size: 93.3%;
   }
   @media (min-width: 992px) {
-    font-size: 98%;
+    font-size: 96.6%;
   }
   @media (min-width: 1200px) {
     font-size: 100%;
@@ -52,4 +52,22 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+a {
+  color: #077bd1;
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+
+  &:hover {
+    color: #c33134;
+  }
+}
+
+.container {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin: 0 auto;
+  width: 800px;
+  max-width: 100%;
 }
