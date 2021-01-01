@@ -65,6 +65,10 @@ class Post extends React.Component {
             </figure>
             <p dangerouslySetInnerHTML={{ __html: excerpt }} />
           </div>
+
+          <div className={style.readMore}>
+            <Link to={slug}>Читать дальше</Link>
+          </div>
         </section>
       </article>
     );

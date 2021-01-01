@@ -51,7 +51,7 @@ export const pageQuery = graphql`
                 fluid(
                   cropFocus: CENTER
                   maxWidth: 1000
-                  maxHeight: 600
+                  maxHeight: 550
                   quality: 90
                 ) {
                   src

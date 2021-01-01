@@ -39,11 +39,30 @@
 }
 
 .thumbnail {
-  margin: 1.3rem 0;
+  margin: 1.25rem 0;
   img {
     margin: 0 auto;
     border-radius: 4px;
     max-width: 100%;
+  }
+}
+
+.readMore {
+  margin-top: 1.5rem;
+
+  a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+    border: 1px solid #e3e5e7;
+    border-radius: 5px;
+    padding: 4px 15px 5px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: #077bd1;
+      background-color: rgba(7, 123, 209, 0.03);
+    }
   }
 }
 
@@ -55,12 +74,12 @@
 
 @media (min-width: 1000px) {
   .header_title {
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 1200px) {
   .header_title {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
 }

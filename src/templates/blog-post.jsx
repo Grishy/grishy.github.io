@@ -31,6 +31,8 @@ class Cover extends React.Component {
   }
 }
 
+
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
@@ -38,48 +40,6 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext;
     const coverSrc =
       post.frontmatter.img && post.frontmatter.img.childImageSharp.fluid.src;
-
-    //  <Layout location={this.props.location} title={siteTitle} whiteHeader={true}>
-    //       <SEO
-    //         title={post.frontmatter.title}
-    //         description={post.frontmatter.description || post.excerpt}
-    //       />
-    //       <h1>{post.frontmatter.title}</h1>
-    //       <p
-    //         style={{
-    //           display: `block`,
-    //         }}
-    //       >
-    //         {post.frontmatter.date}
-    //       </p>
-    //       <div dangerouslySetInnerHTML={{ __html: post.html }} />
-    //       <hr style={{}} />
-
-    //       <ul
-    //         style={{
-    //           display: `flex`,
-    //           flexWrap: `wrap`,
-    //           justifyContent: `space-between`,
-    //           listStyle: `none`,
-    //           padding: 0,
-    //         }}
-    //       >
-    //         <li>
-    //           {previous && (
-    //             <Link to={previous.fields.slug} rel="prev">
-    //               ← {previous.frontmatter.title}
-    //             </Link>
-    //           )}
-    //         </li>
-    //         <li>
-    //           {next && (
-    //             <Link to={next.fields.slug} rel="next">
-    //               {next.frontmatter.title} →
-    //             </Link>
-    //           )}
-    //         </li>
-    //       </ul>
-    //     </Layout>
 
     const cover = {
       coverSrc,
@@ -101,6 +61,30 @@ class BlogPostTemplate extends React.Component {
           })}
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
+        <ul
+          style={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            justifyContent: `space-between`,
+            listStyle: `none`,
+            padding: 0,
+          }}
+        >
+          <li>
+            {previous && (
+              <Link to={previous.fields.slug} rel="prev">
+                ← {previous.frontmatter.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link to={next.fields.slug} rel="next">
+                {next.frontmatter.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
         <Footer />
       </React.Fragment>
     );

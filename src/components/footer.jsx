@@ -1,6 +1,6 @@
 import React from "react";
 // import classNames from "classnames/bind"
-// import { Link } from "gatsby";
+import { Link } from "gatsby";
 
 import style from "./footer.module.scss";
 
@@ -78,20 +78,20 @@ class Footer extends React.Component {
         </ul>
 
         <ul className={style.link}>
-          <li>
-            <a href="/projects">Проекты</a>
-          </li>
+          {/*<li>*/}
+          {/*  <a href="/projects">Проекты</a>*/}
+          {/*</li>*/}
           <li>
             <a href="mailto:sfd">mailg@gmail.com</a>
           </li>
-          <li>
-            <a href="/about">Обо Мне</a>
-          </li>
+          {/*<li>*/}
+          {/*  <a href="/about">Обо Мне</a>*/}
+          {/*</li>*/}
         </ul>
 
         <p className={style.text}>
-          Copyright © <a href="/">Grishy </a> {new Date().getFullYear()}.{" "}
-          <br></br> with
+          Copyright © <Link to="/">Grishy </Link> {new Date().getFullYear()}{" "}
+          with{" "}
           <span className={style.heart_wrapper}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
