@@ -44,8 +44,9 @@ export const pageQuery = graphql`
             }
           }
           frontmatter {
-            date(formatString: "DD MMMM YYYY", locale: "ru")
             title
+            draft
+            date(formatString: "DD MMMM YYYY", locale: "ru")
             img {
               childImageSharp {
                 fluid(
@@ -58,7 +59,6 @@ export const pageQuery = graphql`
                 }
               }
             }
-            draft
           }
         }
       }

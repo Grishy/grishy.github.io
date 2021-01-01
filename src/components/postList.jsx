@@ -14,7 +14,6 @@ class PostList extends React.Component {
     return (
       <main className={`container ${style.list}`}>
         {this.props.posts.map(({ node }) => {
-          readingTimeStr(node.fields.readingTime);
           const title = node.frontmatter.title;
           const slug = node.fields.slug;
           const readingTime = readingTimeStr(node.fields.readingTime);

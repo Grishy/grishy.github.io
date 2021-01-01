@@ -7,56 +7,70 @@ import SEO from "../components/seo";
 import style from "./blog-post.module.scss";
 import "../global.scss";
 
+function readingTimeStr(readingNode) {
+  const displayed = Math.ceil(readingNode.minutes);
+  return `${displayed} мин.`;
+}
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
     const { previous, next } = this.props.pageContext;
     const thumbnail = post.frontmatter.img;
     const thumbnailSrc = thumbnail && thumbnail.childImageSharp.fluid.src;
-
-    const cover = {
-      thumbnailSrc,
-      title: post.frontmatter.title,
-      date: post.frontmatter.date,
-    };
+    const readingTime = readingTimeStr(post.fields.readingTime);
 
     return (
       <React.Fragment>
         <SEO
-          title={cover.title}
+          title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
 
         <Header />
 
-        <main className={`container ${style.main}`}>
-          <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        <main className={style.main}>
+          <header>
+            <div className={style.meta}>
+              <time>{post.frontmatter.date}</time> — {readingTime}
+            </div>
+
+            <h1 className={style.title}>{post.frontmatter.title}</h1>
+          </header>
+
+          <img
+            className={style.thumbnail}
+            src={thumbnailSrc}
+            alt={post.frontmatter.title}
+          />
+
+          <section
+            className={`container ${style.post}`}
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
         </main>
 
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
+        <div className={style.paginator}>
+          {previous && (
+            <Link
+              to={previous.fields.slug}
+              rel="prev"
+              className={style.paginator__prev}
+            >
+              ← {previous.frontmatter.title}
+            </Link>
+          )}
+          {next && (
+            <Link
+              to={next.fields.slug}
+              rel="next"
+              className={style.paginator__next}
+            >
+              {next.frontmatter.title} →
+            </Link>
+          )}
+        </div>
+
         <Footer />
       </React.Fragment>
     );
@@ -75,15 +89,24 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
-      excerpt(pruneLength: 160)
       html
+      fields {
+        readingTime {
+          minutes
+        }
+      }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "DD MMMM YYYY", locale: "ru")
         draft
         img {
           childImageSharp {
-            fluid(cropFocus: CENTER, maxWidth: 1920, quality: 90) {
+            fluid(
+              cropFocus: CENTER
+              maxWidth: 1600
+              maxHeight: 800
+              quality: 90
+            ) {
               src
             }
           }
