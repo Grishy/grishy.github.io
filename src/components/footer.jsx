@@ -82,7 +82,7 @@ class Footer extends React.Component {
           {/*  <a href="/projects">Проекты</a>*/}
           {/*</li>*/}
           <li>
-            <a href="mailto:sfd">mailg@gmail.com</a>
+            <a href="mailto:mailgrishy@gmail.com">mailgrishy@gmail.com</a>
           </li>
           {/*<li>*/}
           {/*  <a href="/about">Обо Мне</a>*/}

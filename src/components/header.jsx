@@ -9,7 +9,6 @@ const menuLinks = [
   { to: "/contacts", name: "Контакты" },
 ];
 
-
 function menuLinksJSX() {
   return menuLinks.map((el) => {
     return (

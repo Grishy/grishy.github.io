@@ -36,7 +36,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt(pruneLength: 333)
+          excerpt(pruneLength: 250)
           fields {
             slug
             readingTime {
@@ -51,7 +51,7 @@ export const pageQuery = graphql`
                 fluid(
                   cropFocus: CENTER
                   maxWidth: 1000
-                  maxHeight: 550
+                  maxHeight: 500
                   quality: 90
                 ) {
                   src
