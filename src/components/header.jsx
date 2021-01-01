@@ -27,12 +27,14 @@ function menuLinksJSX() {
 class Header extends React.Component {
   render() {
     return (
-      <header className={style.header}>
-        <Link to="/" className={`${style.header__title}`}>
-          Sergey G.
-        </Link>
-        <nav className={style.header__nav}>{menuLinksJSX()}</nav>
-      </header>
+      <div className={style.header__container}>
+        <header className={style.header}>
+          <Link to="/" className={`${style.header__title}`}>
+            Sergey G.
+          </Link>
+          <nav className={style.header__nav}>{menuLinksJSX()}</nav>
+        </header>
+      </div>
     );
   }
 }

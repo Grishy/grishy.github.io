@@ -1,13 +1,27 @@
+.header__container {
+  display: flex;
+  justify-content: center;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   width: 100%;
-  margin: 0 auto;
   max-width: 1410px;
+  padding: 2rem 5rem;
 
-  & > * {
-    padding: 2rem 4rem;
+  @media (max-width: 600px) {
+    padding: 1.5rem 3rem;
+    flex-flow: column;
+    border-bottom: 1px solid #eee;
+
+    & > * {
+      margin-top: 0.7rem;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
   }
 }
 
@@ -15,10 +29,8 @@
   color: #1f2321;
   font-size: 1.15rem;
   font-weight: bold;
-  //text-transform: uppercase;
-  //letter-spacing: 0.125rem;
   text-decoration: none;
-  transition: all 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
 
   &:hover {
     opacity: 0.8;
@@ -28,20 +40,20 @@
 .header__nav {
 }
 
-$color_link-hover: #1f2321;
-
 .header__nav__link {
-  margin-right: 1.5rem;
+  margin-left: 1.25rem;
   color: rgb(67 92 110);
   font-size: 1rem;
   text-decoration: none;
-  transition: all 0.25s ease-in-out;
+  transition: color 0.25s ease-in-out;
 
-  &:hover {
-    color: $color_link-hover;
+  &:first-child {
+    margin-left: 0;
   }
 }
 
-.header__nav__link-active {
-  color: $color_link-hover;
+// Class set to Link by Gatsby.js
+.header__nav__link:hover,
+header__nav__link-active {
+  color: #1f2321;
 }
