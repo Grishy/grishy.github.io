@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import classNames from "classnames/bind";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -8,41 +7,16 @@ import SEO from "../components/seo";
 import style from "./blog-post.module.scss";
 import "../global.scss";
 
-class Cover extends React.Component {
-  render() {
-    const { coverSrc, title, date } = this.props;
-
-    return (
-      <section
-        style={{
-          backgroundImage: `url(${coverSrc})`,
-        }}
-        className={style.cover}
-      >
-        <div className={style.coverGradient} />
-        <div className={style.coverWrapper}>
-          <div className={style.coverBlock}>
-            <h1 className={style.coverBlock_title}>{title}</h1>
-            <p className={style.coverBlock_date}>{date}</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-}
-
-
-
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
     const siteTitle = this.props.data.site.siteMetadata.title;
     const { previous, next } = this.props.pageContext;
-    const coverSrc =
-      post.frontmatter.img && post.frontmatter.img.childImageSharp.fluid.src;
+    const thumbnail = post.frontmatter.img;
+    const thumbnailSrc = thumbnail && thumbnail.childImageSharp.fluid.src;
 
     const cover = {
-      coverSrc,
+      thumbnailSrc,
       title: post.frontmatter.title,
       date: post.frontmatter.date,
     };
@@ -53,14 +27,13 @@ class BlogPostTemplate extends React.Component {
           title={cover.title}
           description={post.frontmatter.description || post.excerpt}
         />
+
         <Header />
-        <Cover {...cover} />
-        <section
-          className={classNames({
-            [style.post]: true,
-          })}
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
+
+        <main className={`container ${style.main}`}>
+            <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        </main>
+
         <ul
           style={{
             display: `flex`,
