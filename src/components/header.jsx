@@ -27,8 +27,8 @@ function menuLinksJSX() {
 class Header extends React.Component {
   render() {
     return (
-      <div className={`container ${style.header__container}`}>
-        <header className={style.header}>
+      <div className={style.header__container}>
+        <header className={`container ${style.header}`}>
           <Link to="/" className={style.header__title}>
             Sergey G.
           </Link>

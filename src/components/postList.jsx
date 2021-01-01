@@ -18,9 +18,8 @@ class PostList extends React.Component {
           const title = node.frontmatter.title;
           const slug = node.fields.slug;
           const readingTime = readingTimeStr(node.fields.readingTime);
-          const preview =
-            node.frontmatter.img &&
-            node.frontmatter.img.childImageSharp.fluid.src;
+          const previewImg = node.frontmatter.img;
+          const preview = previewImg && previewImg.childImageSharp.fluid.src;
           const excerpt = node.frontmatter.description || node.excerpt;
           const date = node.frontmatter.date;
 
@@ -62,6 +61,7 @@ class Post extends React.Component {
               <img src={preview} alt={title} />
             </Link>
           </figure>
+
           <p dangerouslySetInnerHTML={{ __html: excerpt }} />
 
           <div className={style.readMore}>
