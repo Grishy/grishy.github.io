@@ -2,7 +2,6 @@
 title: "Привет мир!"
 date: "2015-05-01T22:12:03.284Z"
 img: ./preview.jpg
-draft: false
 ---
 
 Первая запись в блоге.

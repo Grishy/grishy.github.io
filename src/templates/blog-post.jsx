@@ -98,7 +98,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "DD MMMM YYYY", locale: "ru")
-        draft
         img {
           childImageSharp {
             fluid(
