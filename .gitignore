@@ -7,3 +7,6 @@ public
 
 # Idea
 .idea
+
+# Mac OS
+.DS_Store
